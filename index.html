@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./try.css">
+    
+    <script>
+        function LoadCategories() {
+            fetch("../JSON FILES/test2.json")
+                .then(function (response) {
+                    return response.json(); 
+                })
+                .then(function (categories) {
+                    categories.unshift("Latest Movies");
+                    categories.forEach(function (category) {
+                        var option = document.createElement("option");
+                        option.text = category.toUpperCase();  
+                        option.value = category; 
+                        document.getElementById("lstCategories").appendChild(option); 
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Categories लोड करते समय समस्या हुई:", error);
+                });
+        }
+
+        function LoadProducts(category) {
+            fetch("../JSON FILES/test.json") 
+                .then(function (response) {
+                    return response.json(); 
+                })
+                .then(function (data) {
+                    document.getElementById("catalog").innerHTML = "";  
+
+                    const filteredProducts = category === "Latest Movies" 
+                        ? data  
+                        : data.filter(function (item) {
+                            return item.category === category; 
+                        });
+    
+                    filteredProducts.forEach(function (item) {
+                        var div = document.createElement("div");
+                        div.className = "card m-2 p-2";
+                        div.style.width = "18rem";
+                        div.innerHTML = `
+                            <video width="280" height="250" class="card-img-top" controls>
+                                <source src="${item.Videos}" alt="${item.Name}" type="video/mp4">
+                            </video>
+                            <div class="card-body">
+                              <center>
+                                <h5 class="card-title">${item.Name}</h5>
+                                </center>
+                                <p class="card-text">Year: ${item.Year}</p>
+                                <p class="card-text">Category: ${item.category}</p>
+                                <p class="card-text">Language: ${item.Language}</p>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-primary w-100">Add to cart</button>
+                            </div>
+                        `;
+                        document.getElementById("catalog").appendChild(div);
+                    });
+                })
+                .catch(function (error) {
+                    console.error("Products लोड करते समय समस्या हुई:", error);
+                    document.getElementById("catalog").innerHTML = "<p>माफ करें, उत्पाद लोड करने में कुछ समस्या हुई।</p>";
+                });
+        }
+
+        function CategoryChange() {
+            var categoryname = document.getElementById("lstCategories").value;
+            LoadProducts(categoryname); 
+        }
+
+        function bodyload() {
+            LoadCategories();
+            LoadProducts("Latest Movies");
+        }
+    </script>
+</head>
+<body onload="bodyload()" class="container-fluid">
+    <header>
+        <h2 class="text-center">Movies</h2>
+    </header>
+    <section class="row mt-3">
+        <div class="container border col-2">
+            <div class="box">
+                <select onchange="CategoryChange()" id="lstCategories" class="form-select" aria-label="Default select example"></select>
+            </div>
+        </div>
+
+        <div class="container border col-10">
+            <div id="cardbox">
+                <div id="catalog" class="d-flex flex-wrap justify-content-around"></div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
