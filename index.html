@@ -10,7 +10,7 @@
     
     <script>
         function LoadCategories() {
-            fetch("../JSON FILES/test2.json")
+            fetch("test2.json")
                 .then(function (response) {
                     return response.json(); 
                 })
@@ -29,7 +29,7 @@
         }
 
         function LoadProducts(category) {
-            fetch("../JSON FILES/test.json") 
+            fetch("test.json") 
                 .then(function (response) {
                     return response.json(); 
                 })
