@@ -1,7 +1,6 @@
 .box {
     position: fixed;
-    margin-left: 0%;
-    margin-top: 1%;
+    margin-left: -1%;
   }
   
   .box select {
@@ -25,3 +24,153 @@
   .box select option {
     padding: 100%;
   }
+  .box select:hover {
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    color: red;
+    font-size: large;
+    box-shadow: 0 5px 25px rgba(49, 42, 244, 0.933);
+  }
+  header{
+    background-color: black;
+    color: yellow;
+    text-align: center;
+    font-size: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 5px 25px rgba(192, 255, 43, 0.933);
+    transition: background-color 0.5s ease-in-out;
+  }
+
+  header:hover {
+    background-color: #030303;
+    color: white;
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    z-index: 100;
+  }
+
+ 
+  .container{
+    margin-top: 2%;
+  }
+
+  /* =================================================================*/
+
+  /* Grid System */
+.col-md-3, .col-md-9 {
+  margin-bottom: 1rem;
+}
+
+/* Cards Styling */
+.card {
+  width: 100%;
+  max-width: 18rem;
+  margin-bottom: 15px;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card img {
+  width: 100%;
+}
+
+/* Footer Button */
+.card-footer button {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+  .box {
+      position: fixed;
+      margin-left: 0;
+      margin-top: 20px;
+      
+  }
+
+  header {
+      font-size: 18px;
+  }
+
+  .col-md-3, .col-md-9 {
+      width: 100%;
+      margin-top: 15px;
+  }
+
+  .card {
+      width: 100%; /* Full width for small screens */
+  }
+}
+
+@media (max-width: 767px) {
+  .box {
+      position: fixed;
+      margin-left: 0;
+      margin-top: 0px;
+      left: 0;
+      width: 17%;
+  }
+
+  header {
+      font-size: 16px;
+  }
+
+  .container {
+      margin-top: 20%;
+  }
+
+  .col-md-3, .col-md-9 {
+      width: 100%;
+      margin-top: 15px;
+  }
+
+  .card {
+      width: 100%; /* Full width for mobile */
+      margin-bottom: 10px;
+  }
+
+  .card-body {
+      padding: 10px;
+  }
+
+  .box select {
+      width: 100%; /* Full width select box on mobile */
+  }
+}
+
+/* For Extra Small Screens (e.g. smaller mobile devices) */
+@media (max-width: 480px) {
+  
+  header {
+      font-size: 14px;
+      box-shadow: 0 5px 15px rgba(239, 28, 28, 0.933);
+      top: 0;
+  }
+
+  .box select {
+      font-size: 30%; 
+      box-shadow: 0 5px 15px rgba(239, 28, 28, 0.933);
+  }
+  .box select:hover{
+    font-size: 30%;
+    box-shadow: 0 5px 15px rgba(49, 42, 244, 0.933);
+  }
+
+  .card {
+      width: 100%;
+  }
+
+  .card-body {
+      padding: 8px;
+  }
+  .container{
+    margin-top: 5%;
+  }
+}
